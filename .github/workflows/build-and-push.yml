@@ -1,0 +1,48 @@
+name: Build and Push Backstage to GHCR
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+
+    - name: set up node.js env
+      uses: actions/setup-node@v5
+      with:
+        node-version: 20
+        cache: yarn
+    
+    - name: install yarn
+      run: npm install -g yarn
+
+    - name: install dependencies
+      run: yarn install --immutable
+
+    - name: generate typescript declarations
+      run: yarn tsc
+    
+    - name: build backend app
+      run: yarn build:backend
+
+    - name: log in to the ghcr
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: build docker image
+      run: docker image build . -f packages/backend/Dockerfile --tag ghcr.io/${{ github.repository }}:latest
+
+    - name: push docker image to ghcr
+      run: docker push ghcr.io/${{ github.repository }}:latest
