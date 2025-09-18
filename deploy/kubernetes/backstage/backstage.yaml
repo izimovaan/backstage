@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: backstage
   namespace: backstage
-  labels:
-    app: backstage
 spec:
   replicas: 1
   selector:
@@ -16,12 +14,12 @@ spec:
         app: backstage
     spec:
       containers:
-      - name: backstage
-        image: ghcr.io/izimovaan/backstage:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - name: http
-          containerPort: 7007
-        envFrom:
-        - secretRef:
-            name: postgres-secrets
+        - name: backstage
+          image: backstage:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 7007
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
