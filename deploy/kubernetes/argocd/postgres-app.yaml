@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/izimovaan/backstage.git
+    targetRevision: HEAD
+    path: deploy/kubernetes/postgres
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backstage
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

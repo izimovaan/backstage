@@ -19,7 +19,7 @@ jobs:
     - name: set up node.js env
       uses: actions/setup-node@v5
       with:
-        node-version: 20
+        node-version: 22
         cache: yarn
     
     - name: install yarn
