@@ -5,10 +5,10 @@ on:
     branches:
     - master
     paths-ignore:
-      - 'app-config.yaml'
-      - 'app-config.production.yaml'
-      - 'deploy/kubernetes'
-      - '.github/workflow'
+    - 'app-config.yaml'
+    - 'app-config.production.yaml'
+    - 'deploy/kubernetes'
+    - '.github/workflow'
 
 jobs:
   build-and-push:
