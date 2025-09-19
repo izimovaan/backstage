@@ -1,13 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: backstage
-  namespace: backstage
-spec:
-  template:
-    spec:
-      containers:
-        - name: backstage
-          env:
-            - name: BACKEND_URL
-              value: "http://backstage-service.backstage.svc.cluster.local:7007"
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: backstage
+#   namespace: backstage
+# spec:
+#   template:
+#     spec:
+#       containers:
+#         - name: backstage
+#           env:
+#             - name: BACKEND_URL
+#               value: "http://backstage-service.backstage.svc.cluster.local:7007"

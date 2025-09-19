@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/izimovaan/backstage.git
     targetRevision: HEAD
-    path: deploy/kubernetes/overlays/prod
+    path: deploy/kubernetes/base/backstage
   destination:
     server: https://kubernetes.default.svc
     namespace: backstage
