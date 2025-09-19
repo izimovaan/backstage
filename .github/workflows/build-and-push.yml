@@ -5,8 +5,7 @@ on:
     branches:
     - master
     paths-ignore:
-    - 'deploy/kubernetes/base/argocd/backstage-app.yaml'
-    - 'deploy/kubernetes/base/argocd/postgres-app.yaml'
+    - 'deploy/kubernetes/**'
 
 jobs:
   build-and-push:
